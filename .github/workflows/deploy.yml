@@ -20,9 +20,12 @@ jobs:
       - name: Run tests
         run: |
           npm test
-
+          
+      - name: Start ssh-agent
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          
       - name: Deploy to Server
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           ssh -o StrictHostKeyChecking=no haechal@piljoong.kr "cd /var/www/piljoong.kr && git pull origin main && npm install && pm2 reload app"
