@@ -28,4 +28,4 @@ jobs:
           
       - name: Deploy to Server
         run: |
-          ssh -p 60217 -o StrictHostKeyChecking=no haechal@piljoong.kr "cd /var/www/piljoong.kr && git pull origin main && npm install && pm2 reload app"
+          ssh -vvv -p 60217 -o StrictHostKeyChecking=no haechal@piljoong.kr "cd /var/www/piljoong.kr && git pull origin main && npm install && pm2 reload app"
